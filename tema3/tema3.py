@@ -112,7 +112,7 @@ for epoch in range(epochs):
         db2 = np.sum(probs, axis=0, keepdims=True)
         # db2 = dL/db2 = suma din dL/dz2(i) = suma valorilor de pe coloane si astfel obtin dimensiunea 1 x nr de coloane din probs = 1 x 10
 
-        da1 = probs.dot(W2.T) # da1 = dL/da1 = w2.T x dL/dz2 = w2.T x probs
+        da1 = probs.dot(W2.T) # da1 = dL/da1 = w2.T x dL/dz2 = probs x w2.T 
         dz1 = da1 * relu_deriv(z1) #dz1 = dL/dz1 = dL/da1 x da1/dz1 = da1 x relu_derivat de z1
         dz1 *= dropout_mask / (1 - dropout_rate) # dz1 = dz1 x dropout_mask / (1- dropout_mask) 
         # in forward am inmultit a1 cu dropout_mask / (1 - dropout_rate) ca sa mentinem magnitudinea medie; in backprop facem la fel
